@@ -15,7 +15,7 @@ for i in $@; do
 done
 
 bind () {
-  if [ -d "$1" ]; then
+  if [ -d "$1" ] || [ -f "$1" ]; then
     BIND="$BIND --bind $1:$2"
   fi
 }
