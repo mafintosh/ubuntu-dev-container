@@ -1,0 +1,25 @@
+{
+  "name": "ubuntu-dev-container",
+  "version": "0.0.0",
+  "description": "Ubuntu linux container for systemd-nspawn",
+  "dependencies": {
+    "mkcontainer": "^1.4.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "install": "mkcontainer"
+  },
+  "bin": {
+    "ubuntu-dev-container": "./bin.sh"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mafintosh/ubuntu-dev-container.git"
+  },
+  "author": "Mathias Buus (@mafintosh)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/mafintosh/ubuntu-dev-container/issues"
+  },
+  "homepage": "https://github.com/mafintosh/ubuntu-dev-container"
+}
