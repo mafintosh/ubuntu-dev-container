@@ -9,6 +9,7 @@ RUN apt-get install -y git vim curl build-essential wget bash-completion screen 
 RUN mkdir -p /opt/mininet \
   && git clone git://github.com/mininet/mininet.git /opt/mininet \
   && cd /opt/mininet \
+  && git checkout 2.2.2 \
   && make install \
   && apt-get install -y openvswitch-testcontroller openvswitch-switch \
   && cp /usr/bin/ovs-testcontroller /usr/bin/ovs-controller

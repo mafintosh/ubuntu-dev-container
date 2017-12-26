@@ -1,14 +1,12 @@
-OPTIONS="-q -a -u maf"
+OPTIONS="-q -a -u $USER"
 DIRNAME="$(dirname $(realpath $0))"
 CONTAINER="$DIRNAME/container.img"
 BIND=""
-BOOT=false
 CMD=""
 
 for i in $@; do
   if ([ "$i" == "-b" ] || [ "$i" == "--boot" ]) && [ "$CMD" == "" ]; then
     OPTIONS="-b"
-    BOOT=true
   else
     CMD="$CMD $i"
   fi
