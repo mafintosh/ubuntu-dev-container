@@ -1,3 +1,5 @@
 node_modules
 container.img
+tmp.img
+tmp.img.mnt
 Makefile
