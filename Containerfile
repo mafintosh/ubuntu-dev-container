@@ -11,12 +11,12 @@ RUN mkdir -p /opt/mininet \
   && cd /opt/mininet \
   && git checkout 2.2.2 \
   && make install \
-  && apt-get install -y openvswitch-testcontroller openvswitch-switch \
+  && apt-get install -y openvswitch-testcontroller openvswitch-common openvswitch-switch \
   && cp /usr/bin/ovs-testcontroller /usr/bin/ovs-controller
 RUN curl -fs https://raw.githubusercontent.com/mafintosh/node-install/master/install | sh \
   && node-install 8.9.3
 COPY home /root/home
-ENV UBUNTU_USER="$USER" UBUNTU_PASSWD="qweqwe" UBUNTU_HOSTNAME="$HOSTNAME"
+ENV UBUNTU_USER="$USER" UBUNTU_PASSWD="qweqwe" UBUNTU_HOSTNAME="$(hostname)"
 RUN adduser --disabled-password --gecos "" $UBUNTU_USER && echo root:$UBUNTU_PASSWD | chpasswd \
   && echo $UBUNTU_USER:$UBUNTU_PASSWD | chpasswd \
   && echo "$UBUNTU_USER ALL=(ALL) NOPASSWD:ALL" > /tmp/container-user \
