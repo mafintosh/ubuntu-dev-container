@@ -5,8 +5,8 @@ BIND=""
 CMD=""
 
 for i in $@; do
-  if ([ "$i" == "-b" ] || [ "$i" == "--boot" ]) && [ "$CMD" == "" ]; then
-    OPTIONS="-b"
+  if [ "${i:0:1}" == "-" ] && [ "$CMD" == "" ]; then
+    OPTIONS="$OPTIONS $i"
   else
     CMD="$CMD $i"
   fi
