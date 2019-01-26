@@ -1,4 +1,4 @@
-OPTIONS="-q -a -u $USER"
+DEFAULT_OPTIONS="-q -a -u $USER"
 DIRNAME="$(dirname $(realpath $0))"
 CONTAINER="$DIRNAME/container.img"
 BIND=""
@@ -6,11 +6,16 @@ CMD=""
 
 for i in $@; do
   if [ "${i:0:1}" == "-" ] && [ "$CMD" == "" ]; then
+    if [ "$i" == "-b" ] || [ "$i" == "--boot" ]; then
+      DEFAULT_OPTIONS=""
+    fi
     OPTIONS="$OPTIONS $i"
   else
     CMD="$CMD $i"
   fi
 done
+
+OPTIONS="$DEFAULT_OPTIONS $OPTIONS"
 
 bind () {
   if [ -d "$1" ] || [ -f "$1" ]; then
