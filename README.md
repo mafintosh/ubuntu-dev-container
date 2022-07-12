@@ -2,7 +2,6 @@
 
 Ubuntu linux container for systemd-spawn intended for development usage.
 
-Ships with Mininet and a few other deps.
 See the Containerfile for more info.
 
 ```
