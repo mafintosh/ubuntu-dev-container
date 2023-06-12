@@ -6,6 +6,13 @@ RUN echo deb http://security.ubuntu.com/ubuntu bionic main restricted > /etc/apt
 RUN apt-get update
 RUN apt-get install -y git vim curl build-essential wget bash-completion screen man libtool \
   autoconf automake python help2man python-setuptools
+RUN apt-get install -y libssl-dev \
+  && cd /tmp \
+  && curl https://github.com/Kitware/CMake/releases/download/v3.26.4/cmake-3.26.4.tar.gz -L | tar xz \
+  && cd cmake-3.26.4 \
+  && ./bootstrap \
+  && make -j5 \
+  && make install
 RUN curl -fs https://raw.githubusercontent.com/mafintosh/node-install/master/install | sh \
   && node-install 16
 COPY home /root/home
