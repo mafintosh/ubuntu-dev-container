@@ -1,8 +1,8 @@
-FROM ubuntu:bionic
+FROM ubuntu:focal
 RUN rm -f /etc/resolv.conf && echo '8.8.8.8' > /etc/resolv.conf
-RUN echo deb http://security.ubuntu.com/ubuntu bionic main restricted > /etc/apt/sources.list \
-  && echo deb http://security.ubuntu.com/ubuntu bionic universe >> /etc/apt/sources.list \
-  && echo deb http://security.ubuntu.com/ubuntu bionic multiverse >> /etc/apt/sources.list
+RUN echo deb http://security.ubuntu.com/ubuntu focal main restricted > /etc/apt/sources.list \
+  && echo deb http://security.ubuntu.com/ubuntu focal universe >> /etc/apt/sources.list \
+  && echo deb http://security.ubuntu.com/ubuntu focal multiverse >> /etc/apt/sources.list
 RUN apt-get update
 RUN apt-get install -y git vim curl build-essential wget bash-completion screen man libtool \
   autoconf automake python help2man python-setuptools
@@ -14,7 +14,7 @@ RUN apt-get install -y libssl-dev \
   && make -j5 \
   && make install
 RUN curl -fs https://raw.githubusercontent.com/mafintosh/node-install/master/install | sh \
-  && node-install 16
+  && node-install 18
 COPY home /root/home
 ENV UBUNTU_USER="$USER" UBUNTU_PASSWD="qweqwe" UBUNTU_HOSTNAME="$(hostname)"
 RUN adduser --disabled-password --gecos "" $UBUNTU_USER && echo root:$UBUNTU_PASSWD | chpasswd \
