@@ -1,6 +1,6 @@
 {
   "name": "ubuntu-dev-container",
-  "version": "1.2.1",
+  "version": "2.0.0",
   "description": "Ubuntu linux container for systemd-spawn intended for development usage",
   "dependencies": {
     "mkcontainer": "^1.4.0"
