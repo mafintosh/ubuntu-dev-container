@@ -1,8 +1,10 @@
 FROM ubuntu:focal
 RUN rm -f /etc/resolv.conf && echo '8.8.8.8' > /etc/resolv.conf
-RUN echo deb http://security.ubuntu.com/ubuntu focal main restricted > /etc/apt/sources.list \
-  && echo deb http://security.ubuntu.com/ubuntu focal universe >> /etc/apt/sources.list \
-  && echo deb http://security.ubuntu.com/ubuntu focal multiverse >> /etc/apt/sources.list
+RUN echo '[ "$(uname -m)" == "aarch64" ] && echo http://ports.ubuntu.com || echo http://security.ubuntu.com/ubuntu' > /tmp/apt.sh \
+  && echo deb $(bash /tmp/apt.sh) focal main restricted > /etc/apt/sources.list \
+  && echo deb $(bash /tmp/apt.sh) focal universe >> /etc/apt/sources.list \
+  && echo deb $(bash /tmp/apt.sh) focal multiverse >> /etc/apt/sources.list \
+  && rm /tmp/apt.sh
 RUN apt-get update
 RUN apt-get install -y git vim curl build-essential wget bash-completion screen man libtool \
   autoconf automake python help2man python-setuptools
